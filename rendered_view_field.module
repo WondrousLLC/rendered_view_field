@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * @file
+ * Contains rendered_view_field.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function rendered_view_field_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the rendered_view_field module.
+    case 'help.page.rendered_view_field':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This Module creates a field in which you can select a view and this gets rendered in the frontend') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function rendered_view_field_theme() {
+  $theme = [];
+
+  return $theme;
+}

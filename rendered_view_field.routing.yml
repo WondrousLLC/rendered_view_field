@@ -1,0 +1,11 @@
+
+rendered_view_field.views_for_view_field_form:
+  path: '/admin/config/rendered_view_field/viewsforviewfield'
+  defaults:
+    _form: '\Drupal\rendered_view_field\Form\ViewsForViewFieldForm'
+    _title: 'ViewsForViewFieldForm'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+

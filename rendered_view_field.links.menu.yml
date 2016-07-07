@@ -1,0 +1,6 @@
+rendered_view_field.settings:
+  title: 'Rendered View Field Settings'
+  description: 'Settings for the Rendered View Field'
+  parent: system.admin_config_services
+  route_name: rendered_view_field.views_for_view_field_form
+  weight: 100
