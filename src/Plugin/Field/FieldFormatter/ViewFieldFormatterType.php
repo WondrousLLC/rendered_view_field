@@ -7,11 +7,13 @@
 
 namespace Drupal\rendered_view_field\Plugin\Field\FieldFormatter;
 
+use Drupal\block\Entity\Block;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\views\ViewExecutable;
 use Drupal\views\Views;
 
 /**
@@ -82,7 +84,12 @@ class ViewFieldFormatterType extends FormatterBase {
 
     /** @var ViewExecutable $view */
     $view = Views::getView($viewId);
-    $renderedView = $view->render($displayId);
+
+    /*
+     * Calling preview for the view so that ajax gets attached because
+     * $view->setAjaxEnabled(TRUE); is buggy. Remove this in the future
+     */
+    $renderedView = $view->preview($displayId);
     $renderedView['#cache']['tags'][] = 'node_list';
     return $renderedView;
   }
