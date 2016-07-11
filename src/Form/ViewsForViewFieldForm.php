@@ -44,7 +44,17 @@ class ViewsForViewFieldForm extends ConfigFormBase {
     $viewOptions = [];
 
     foreach ($views as $view) {
-      $viewOptions[$view->get('id')] = $view->get('label');
+      $displays = $view->get('display');
+
+      foreach ($displays as $display) {
+        if ($display['display_plugin'] !== 'block') {
+          continue;
+        }
+
+        $id = $view->get('id') . ':' . $display['id'];
+        $title = '[' . $view->get('label') . '] ' . $display['display_title'];
+        $viewOptions[$id] = $title;
+      }
     }
 
     $config = $this->config('rendered_view_field.viewsforviewfield');

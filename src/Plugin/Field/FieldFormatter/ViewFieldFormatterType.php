@@ -78,8 +78,11 @@ class ViewFieldFormatterType extends FormatterBase {
     // The text value has no text format assigned to it, so the user input
     // should equal the output, including newlines.
     $viewId = $item->value;
+    list($viewId, $displayId) = explode(':', $viewId);
+
+    /** @var ViewExecutable $view */
     $view = Views::getView($viewId);
-    $renderedView = $view->render();
+    $renderedView = $view->render($displayId);
     $renderedView['#cache']['tags'][] = 'node_list';
     return $renderedView;
   }

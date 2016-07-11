@@ -11,6 +11,8 @@ use Drupal\Core\Config\Config;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\views\Plugin\views\display\DefaultDisplay;
+use Drupal\views\ViewExecutable;
 use Drupal\views\Views;
 
 /**
@@ -45,15 +47,29 @@ class ViewFieldWidgetType extends WidgetBase {
 
     $configService = \Drupal::service('config.storage');
     $selectedViews = $configService->read('rendered_view_field.viewsforviewfield')['selected_views'];
-
     $viewsToDisplayInSelect = [];
-    foreach ($selectedViews as $viewId) {
-      if ($viewId && $viewExecutable = Views::getView($viewId)) {
-        $viewsToDisplayInSelect[$viewId] = $viewExecutable->getTitle();
-      }
-    }
-    $element = [];
 
+    foreach ($selectedViews as $option) {
+      if (!$option) {
+        continue;
+      }
+
+      list($viewId, $displayId) = explode(':', $option);
+
+      /** @var ViewExecutable $view */
+      $view = Views::getView($viewId)->storage;
+      /** @var DefaultDisplay $block */
+      $displays = $view->get('display');
+
+      if (empty($displays[$displayId])) {
+        continue;
+      }
+
+      $title = '[' . $view->get('label') . '] ' . $displays[$displayId]['display_title'];
+      $viewsToDisplayInSelect[$option] = $title;
+    }
+
+    $element = [];
     $element['value'] = $element + array(
         '#type' => 'select',
         '#default_value' => isset($items[$delta]->value) ? $items[$delta]->value : NULL,
