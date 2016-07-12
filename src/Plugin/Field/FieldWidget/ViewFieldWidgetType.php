@@ -37,14 +37,7 @@ class ViewFieldWidgetType extends WidgetBase {
   /**
    * {@inheritdoc}
    */
-  public function formElement(
-    FieldItemListInterface $items,
-    $delta,
-    array $element,
-    array &$form,
-    FormStateInterface $form_state
-  ) {
-
+  public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
     $configService = \Drupal::service('config.storage');
     $selectedViews = $configService->read('rendered_view_field.viewsforviewfield')['selected_views'];
     $viewsToDisplayInSelect = [];
@@ -69,12 +62,11 @@ class ViewFieldWidgetType extends WidgetBase {
       $viewsToDisplayInSelect[$option] = $title;
     }
 
-    $element = [];
-    $element['value'] = $element + array(
+    $element['value'] = [
         '#type' => 'select',
         '#default_value' => isset($items[$delta]->value) ? $items[$delta]->value : NULL,
-        '#options' => $viewsToDisplayInSelect
-      );
+        '#options' => ['' => ''] + $viewsToDisplayInSelect
+    ];
 
     return $element;
   }
