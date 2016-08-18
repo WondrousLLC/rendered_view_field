@@ -1,6 +1,6 @@
 
 rendered_view_field.views_for_view_field_form:
-  path: '/admin/config/rendered_view_field/viewsforviewfield'
+  path: '/admin/config/content/rendered_view_field'
   defaults:
     _form: '\Drupal\rendered_view_field\Form\ViewsForViewFieldForm'
     _title: 'ViewsForViewFieldForm'
