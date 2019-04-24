@@ -1,14 +1,14 @@
 {
-  "name": "WondrousLLC/rendered_view_field",
+  "name": "wearewondrous/rendered_view_field",
   "type": "drupal-module",
   "description": "Add a new field type, so you can then reference rendered views in a node.",
   "keywords": ["Drupal"],
   "license": "GPL-2.0+",
-  "homepage": "https://github.com/WondrousLLC/rendered_view_field",
+  "homepage": "https://github.com/wearewondrous/rendered_view_field",
   "minimum-stability": "dev",
   "support": {
-    "issues": "https://github.com/WondrousLLC/rendered_view_field/issues",
-    "source": "https://github.com/WondrousLLC/rendered_view_field.git"
+    "issues": "https://github.com/wearewondrous/rendered_view_field/issues",
+    "source": "https://github.com/wearewondrous/rendered_view_field.git"
   },
   "require": { }
 }
