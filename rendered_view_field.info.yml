@@ -2,5 +2,6 @@ name: Rendered View Field
 type: module
 description: This Module creates a field in which you can select a view and this gets rendered in the frontend
 core: 8.x
+core_version_requirement : ^8 || ^9
 package: WONDROUS
 version: '0.0.1'
